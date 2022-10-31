@@ -1,0 +1,6 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+    <string name="app_name">Web3Auth Android Demo App</string>
+    <string name="web3auth_project_id">BHV75ODX9QpTBg3yxoQ0MNnTbQ4ksELPEDvkQN_KUAWdFkNdqgzmUZc2p48W1prowdNugWT91_4ydRFFBwap1dE</string>
+    <string name="web3auth_google_client_id">774338308167-q463s7kpvja16l4l0kko3nb925ikds2p.apps.googleusercontent.com</string>
+</resources>

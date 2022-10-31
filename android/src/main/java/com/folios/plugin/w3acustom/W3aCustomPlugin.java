@@ -12,11 +12,8 @@ public class W3aCustomPlugin extends Plugin {
     private W3aCustom implementation = new W3aCustom();
 
     @PluginMethod
-    public void echo(PluginCall call) {
-        String value = call.getString("value");
-
-        JSObject ret = new JSObject();
-        ret.put("value", implementation.echo(value));
-        call.resolve(ret);
+    public void onCreate(PluginCall call) {
+        implementation.onCreate(saveInstanceState());
+        call.resolve();
     }
 }
