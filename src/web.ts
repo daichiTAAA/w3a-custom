@@ -7,4 +7,8 @@ export class W3aCustomWeb extends WebPlugin implements W3aCustomPlugin {
     console.log('ECHO', options);
     return options;
   }
+
+  async login(): Promise<void> {
+    console.log('LOGIN');
+  }
 }

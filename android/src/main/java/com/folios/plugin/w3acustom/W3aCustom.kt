@@ -9,6 +9,7 @@ import android.view.View
 import android.widget.Button
 import android.widget.TextView
 import androidx.appcompat.app.AppCompatActivity
+import com.getcapacitor.PluginCall
 import com.google.gson.Gson
 import com.web3auth.core.Web3Auth
 import com.web3auth.core.types.LoginParams
@@ -23,8 +24,16 @@ class W3aCustom : AppCompatActivity() {
 
         private val gson = Gson()
 
-        public override fun onCreate(savedInstanceState: Bundle?) {
-            super.onCreate(savedInstanceState)
+
+        fun echo(): String {
+            val value = "Hello! Android."
+            Log.i("Echo", value)
+            return value
+        }
+        
+
+        fun login() {
+//            super.onCreate(savedInstanceState)
             setContentView(R.layout.activity_main)
 
             web3Auth = Web3Auth(
