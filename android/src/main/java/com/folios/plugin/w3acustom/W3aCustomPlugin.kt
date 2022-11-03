@@ -1,5 +1,7 @@
 package com.folios.plugin.w3acustom
 
+import android.os.Bundle
+import androidx.core.app.BundleCompat
 import com.getcapacitor.JSObject
 import com.getcapacitor.Plugin
 import com.getcapacitor.PluginCall
@@ -8,7 +10,7 @@ import com.getcapacitor.annotation.CapacitorPlugin
 
 
 @CapacitorPlugin(name = "W3aCustom")
-class W3aCustomPlugin : Plugin() {
+class W3aCustomPlugin :  Plugin() {
     private val implementation = W3aCustom()
 
     @PluginMethod
@@ -17,7 +19,7 @@ class W3aCustomPlugin : Plugin() {
         val value = call.getString("value")
         val concatValue = value + pluginValue
         val ret = JSObject()
-        ret.put("value", concatValue);
+        ret.put("value", concatValue)
         call.resolve(ret)
     }
 
