@@ -1,6 +1,7 @@
 package com.folios.plugin.w3acustom
 
 import android.app.Activity
+import android.content.Context
 import android.util.Log
 
 import android.content.Intent
@@ -22,23 +23,6 @@ import com.web3auth.core.types.Web3AuthOptions
 import com.web3auth.core.types.Web3AuthResponse
 import java8.util.concurrent.CompletableFuture
 
-class MyObserver : DefaultLifecycleObserver {
-    override fun onCreate(owner: LifecycleOwner) {
-    }
-
-    override fun onResume(owner: LifecycleOwner) {
-    }
-
-    override fun onPause(owner: LifecycleOwner) {
-    }
-
-    override fun onStart(owner: LifecycleOwner) {
-    }
-
-    override fun onStop(owner: LifecycleOwner) {
-    }
-}
-
 class W3aCustom : AppCompatActivity() {
     private lateinit var web3Auth: Web3Auth
 
@@ -53,7 +37,6 @@ class W3aCustom : AppCompatActivity() {
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         setContentView(R.layout.activity_main)
-        lifecycle.addObserver(MyObserver())
 
         web3Auth = Web3Auth(
             Web3AuthOptions(
@@ -86,15 +69,6 @@ class W3aCustom : AppCompatActivity() {
     }
 
     private fun signIn() {
-        web3Auth = Web3Auth(
-            Web3AuthOptions(
-                context = this,
-                clientId = "BHV75ODX9QpTBg3yxoQ0MNnTbQ4ksELPEDvkQN_KUAWdFkNdqgzmUZc2p48W1prowdNugWT91_4ydRFFBwap1dE",
-                network = Web3Auth.Network.TESTNET, // MAINNET, TESTNET or CYAN
-                redirectUrl = Uri.parse("com.folios.app://auth"),
-            )
-        )
-
         val selectedLoginProvider = Provider.GOOGLE   // Can be GOOGLE, FACEBOOK, TWITCH etc.
         val loginCompletableFuture: CompletableFuture<Web3AuthResponse> =
             web3Auth.login(
@@ -137,6 +111,8 @@ class W3aCustom : AppCompatActivity() {
             contentTextView.visibility = View.VISIBLE
             signInButton.visibility = View.GONE
             signOutButton.visibility = View.VISIBLE
+            Log.i("key", key)
+            Log.i("userInfo", userInfo.toString())
         } else {
             contentTextView.text = getString(R.string.not_logged_in)
             contentTextView.visibility = View.GONE
@@ -144,13 +120,4 @@ class W3aCustom : AppCompatActivity() {
             signOutButton.visibility = View.GONE
         }
     }
-
-
-
-    fun login() {
-        lifecycle.addObserver(MyObserver())
-        signIn()
-    }
-
-
 }
