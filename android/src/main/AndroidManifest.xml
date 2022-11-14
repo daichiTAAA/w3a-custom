@@ -35,6 +35,7 @@
 
                 <!-- Accept URIs: {YOUR_APP_PACKAGE_NAME}://* -->
                 <data android:scheme="com.folios.app" />
+<!--                <data android:mimeType="text/plain"/>-->
             </intent-filter>
         </activity>
     </application>

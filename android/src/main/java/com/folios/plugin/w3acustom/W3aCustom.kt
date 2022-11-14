@@ -1,20 +1,14 @@
 package com.folios.plugin.w3acustom
 
 import android.app.Activity
-import android.content.Context
-import android.util.Log
-
 import android.content.Intent
 import android.net.Uri
 import android.os.Bundle
+import android.util.Log
 import android.view.View
 import android.widget.Button
 import android.widget.TextView
 import androidx.appcompat.app.AppCompatActivity
-import androidx.lifecycle.DefaultLifecycleObserver
-import androidx.lifecycle.LifecycleOwner
-import androidx.lifecycle.LifecycleRegistry
-import com.getcapacitor.PluginCall
 import com.google.gson.Gson
 import com.web3auth.core.Web3Auth
 import com.web3auth.core.types.LoginParams
@@ -22,6 +16,7 @@ import com.web3auth.core.types.Provider
 import com.web3auth.core.types.Web3AuthOptions
 import com.web3auth.core.types.Web3AuthResponse
 import java8.util.concurrent.CompletableFuture
+
 
 class W3aCustom : AppCompatActivity() {
     private lateinit var web3Auth: Web3Auth
@@ -34,6 +29,7 @@ class W3aCustom : AppCompatActivity() {
         return value
     }
 
+
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         setContentView(R.layout.activity_main)
@@ -41,7 +37,7 @@ class W3aCustom : AppCompatActivity() {
         web3Auth = Web3Auth(
             Web3AuthOptions(
                 context = this,
-                clientId = "BHV75ODX9QpTBg3yxoQ0MNnTbQ4ksELPEDvkQN_KUAWdFkNdqgzmUZc2p48W1prowdNugWT91_4ydRFFBwap1dE",
+                clientId = "BL7i2FRZZev9wGqWv6u4UqL6hcLbfTaZvo29bDt9bytGjL5LtCjtVGSL7NB0eA_Xayog55s-zDFGsfgbnSYJacE",
                 network = Web3Auth.Network.TESTNET, // MAINNET, TESTNET or CYAN
                 redirectUrl = Uri.parse("com.folios.app://auth"),
             )
@@ -79,6 +75,15 @@ class W3aCustom : AppCompatActivity() {
 
         loginCompletableFuture.whenComplete { loginResponse, error ->
             if (error == null) {
+                val key = loginResponse.privKey
+                val userInfo = loginResponse.userInfo
+                if (key != null) {
+                    Log.i("key", key)
+                    Log.i("userInfo", userInfo.toString())
+                    val intent = Intent(key)
+                    setResult(-1, intent)
+                    finish()
+                }
                 reRender(loginResponse)
             } else {
                 Log.d("MainActivity_Web3Auth", error.message ?: "Something went wrong")
@@ -111,8 +116,6 @@ class W3aCustom : AppCompatActivity() {
             contentTextView.visibility = View.VISIBLE
             signInButton.visibility = View.GONE
             signOutButton.visibility = View.VISIBLE
-            Log.i("key", key)
-            Log.i("userInfo", userInfo.toString())
         } else {
             contentTextView.text = getString(R.string.not_logged_in)
             contentTextView.visibility = View.GONE

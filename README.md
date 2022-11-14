@@ -39,8 +39,10 @@ echo(options: { value: string; }) => Promise<{ value: string; }>
 ### login()
 
 ```typescript
-login() => Promise<void>
+login() => Promise<{ value: string; }>
 ```
+
+**Returns:** <code>Promise&lt;{ value: string; }&gt;</code>
 
 --------------------
 
