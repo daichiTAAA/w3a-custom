@@ -10,7 +10,7 @@ import com.getcapacitor.PluginMethod
 import com.getcapacitor.annotation.ActivityCallback
 import com.getcapacitor.annotation.CapacitorPlugin
 
-
+var privateKey: String? = null
 
 @CapacitorPlugin(name = "W3aCustom")
 class W3aCustomPlugin : Plugin() {
@@ -33,28 +33,28 @@ class W3aCustomPlugin : Plugin() {
         }
         Log.i("NodaPoint1", "NodaPoint1")
         startActivityForResult(call, w3aCustomIntent, "w3aCustomResult")
-//            val ret = JSObject()
-//            ret.put("value", )
-//            call.resolve(ret)
         Log.i("NodaPoint2", "NodaPoint2")
         call.resolve()
     }
 
+    @PluginMethod
+    fun logout(call: PluginCall) {
+        privateKey = null
+        call.resolve()
+    }
+
+    @PluginMethod
+    fun getPrivateKey(call: PluginCall) {
+        Log.i("NodaPoint3", privateKey!!)
+        val ret = JSObject()
+        ret.put("value", privateKey)
+        call.resolve(ret)
+    }
 
     @ActivityCallback
     private fun w3aCustomResult(call: PluginCall?, result: ActivityResult): String {
-//        if (call == null) {
-//            return
-//        }
-
-
-        // Do something with the result data
         Log.i("Nodaresult", result.data.toString())
-//        Log.i("Noda", "Nodalog")
-        val ret = JSObject()
-        ret.put("value", result.data.toString())
-        call?.resolve(ret)
+        privateKey = result.data.toString()
         return result.data.toString()
     }
-
 }

@@ -15,6 +15,8 @@ npx cap sync
 
 * [`echo(...)`](#echo)
 * [`login()`](#login)
+* [`logout()`](#logout)
+* [`getPrivateKey()`](#getprivatekey)
 
 </docgen-index>
 
@@ -39,7 +41,25 @@ echo(options: { value: string; }) => Promise<{ value: string; }>
 ### login()
 
 ```typescript
-login() => Promise<{ value: string; }>
+login() => Promise<void>
+```
+
+--------------------
+
+
+### logout()
+
+```typescript
+logout() => Promise<void>
+```
+
+--------------------
+
+
+### getPrivateKey()
+
+```typescript
+getPrivateKey() => Promise<{ value: string; }>
 ```
 
 **Returns:** <code>Promise&lt;{ value: string; }&gt;</code>

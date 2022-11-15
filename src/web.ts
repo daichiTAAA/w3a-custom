@@ -8,8 +8,15 @@ export class W3aCustomWeb extends WebPlugin implements W3aCustomPlugin {
     return options;
   }
 
-  async login(): Promise<{ value: string }> {
+  async login(): Promise<void> {
     console.log('LOGIN');
+  }
+
+  async logout(): Promise<void> {
+    console.log('LOGOUT');
+  }
+
+  async getPrivateKey(): Promise<{ value: string }> {
     return { value: 'Login' };
   }
 }
